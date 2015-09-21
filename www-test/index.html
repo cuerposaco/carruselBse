@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div id="container">
+		<h1>Testing Modules....</h1>
+		<div id="module1" class="col-md-4" data-mod="carrusel" data-service="/json/playlist.json">
+			<div data-mod-container="action"></div>
+			<div data-mod-container="playlist"></div>
+		</div>
+	</div>
+
+	<script src="/public/vendors.min.js"></script>
+	<script src="/build/carrusel.js"></script>
+	<script src="/public/holder.js"></script>
+
+	<script>
+		$('document').ready(function(){
+			modLoader( $('[data-mod]') );
+		});
+
+		function modLoader(datas){
+			datas.each(function(){
+				var $mod = $(this);
+				var $modName = $mod.data('mod');
+				if( window[$modName]){
+					console.log('Window Module ['+$modName+']');
+					window[$modName]({el:$mod});
+				}
+			});
+		};
+	</script>
+</body>
+</html>
